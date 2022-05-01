@@ -1,0 +1,8 @@
+const fruits=[
+    {
+        'name': 'Blue berry',
+        'image': '',
+        'description': 'great fruits',
+        'price': ''
+    }
+]
