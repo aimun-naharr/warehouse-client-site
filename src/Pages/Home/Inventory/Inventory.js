@@ -4,7 +4,7 @@ import Product from './Product/Product';
 import './Inventory.css'
 import { Link } from 'react-router-dom';
 const Inventory = () => {
-    const products= useProduct()
+    const [products]= useProduct()
     const newProducts=products.slice(0,6)
     return (
         <div className='mt-5'>

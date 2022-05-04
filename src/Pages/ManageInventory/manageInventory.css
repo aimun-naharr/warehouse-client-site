@@ -9,6 +9,7 @@
 .card-info{
     display: flex;
    justify-content: space-between;
+   align-items: center;
    border: 1px solid;
    width: 200px;
    padding-left: 8px;
