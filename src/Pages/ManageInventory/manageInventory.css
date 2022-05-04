@@ -1,0 +1,19 @@
+.inventory-card{
+   justify-content: center;
+    margin-top: 20px;
+    display: flex;
+    width: 20px;
+    align-items: center;
+    border: 1px solid;
+}
+.card-info{
+    display: flex;
+   justify-content: space-between;
+   border: 1px solid;
+   width: 200px;
+   padding-left: 8px;
+}
+.inventory-card img{
+    width: 91px;
+    border-radius: 8px;
+}

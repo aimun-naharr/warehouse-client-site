@@ -1,16 +1,16 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebaseinit';
 
 const Login = () => {
     const [
-        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth)
+      ] = useSignInWithEmailAndPassword(auth)
       let navigate = useNavigate();
       let location = useLocation();
       const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -22,7 +22,7 @@ const Login = () => {
         const email=e.target.email.value
         const password=e.target.password.value
         
-        createUserWithEmailAndPassword(email, password)
+        signInWithEmailAndPassword(email, password)
         console.log(email, password)
         
     }
