@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 const ProductDetails = () => {
     const {id}=useParams()
     
     const [product, setProduct]=useState({})
-    const [quantity, setQuantity]=useState(product.quantity)
-    const handleDelivered=()=>{
-        const quantity= parseInt(product.quantity)
-        let newQuantity=quantity-1
-        console.log(newQuantity)
+    const quantity= parseInt(product.quantity)
+    console.log(quantity)
+    const [isReload, setIsReload]=useState(false)
+    const handleDelivered=(id)=>{
+        const url=`http://localhost:5000/quantity/${id}`
+        
+        fetch(url, {
+  method: 'PUT',
+  body: JSON.stringify({
+   quantity: quantity
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+     if(data.matchedCount>0){
+        setIsReload(!isReload)
+     }
+    console.log(data)
+  })
         
     }
     useEffect(()=>{
@@ -33,7 +50,7 @@ const ProductDetails = () => {
                         <p>Supplier name: {product.supplierName}</p>
                         <p>Quantity: {product.quantity}kg</p>
                         <p>Price: ${product.price}</p>
-                        <button onClick={handleDelivered}>Delivered</button>
+                        <button onClick={()=>handleDelivered(product._id)}>Delivered</button>
                     </div>
                 </div>
                 <div className="col-md-6">

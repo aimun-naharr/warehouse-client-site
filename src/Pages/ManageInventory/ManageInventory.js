@@ -1,10 +1,14 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
+// import { FaBeer } from 'react-icons/fa'
 import useProduct from '../../Hooks/useProducts';
 import './manageInventory.css'
 const ManageInventory = () => {
-   
+   const navigate=useNavigate()
     const [products, setProducts]= useProduct()
+    const handleAddbtn=()=>{
+        navigate('/uploadpd')
+    }
     const handleDelete=id=>{
         const confirm=window.confirm('confirm delete?')
         const url=`http://localhost:5000/product/${id}`
@@ -26,11 +30,11 @@ const ManageInventory = () => {
         <div>
         
             <div className="row border">
-            <div className='mx-auto w-25 col-md-12 border'>Add item</div>
+            <div className='mx-auto col-md-12 border add-item'><div><h5>Add item</h5></div><div><button onClick={handleAddbtn}></button></div></div>
                 <div className="col-md-12">
                     {
                         products.map(product=>
-                         <div className='inventory-card w-50 mx-auto'>
+                         <div className='inventory-card mx-auto border'>
                          
                                <div> <img className='' src={product.image} alt="" /></div>
                                 <div className='card-info'>

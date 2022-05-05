@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;600;700&family=Fjalla+One&family=Fredoka:wght@500;600;700&family=Josefin+Sans:wght@500;700&family=Lobster&family=Merriweather&family=Mochiy+Pop+P+One&family=Poppins:wght@600&family=Redressed&family=Roboto+Serif:opsz@8..144&display=swap');
 .App {
   text-align: center;
 }
@@ -35,4 +36,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+body{
+  background-color: #FFE4E3;
+}
+.dosis{
+  font-family: 'Dosis', sans-serif;
+  font-weight: 700;
+}
+.black-color{
+  color: #202435;
 }

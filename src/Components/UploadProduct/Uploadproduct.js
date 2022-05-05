@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Uploadproduct = () => {
     const handleUpload=(e)=>{
@@ -22,6 +23,7 @@ const Uploadproduct = () => {
   .then((response) => response.json())
   .then((data) => {
      console.log(data.success)
+     toast('Products list updated')
      e.target.reset()
   });
         
@@ -52,6 +54,7 @@ const Uploadproduct = () => {
     Upload
   </Button>
 </Form>
+ <ToastContainer></ToastContainer>
         </div>
     );
 };
