@@ -12,7 +12,7 @@ const Inventory = () => {
     }
     return (
         <div className='mt-5 inventory-section'>
-            <h1 className='text-center m-5 dosis'>Inventory</h1>
+            <h1 className='text-center m-5 dosis'>Inven<span className='red-color'>tory</span></h1>
             <div className="container">
                 <div className='row mx-auto w-100 align-items-center justify-content-between gx-6 gy-5 '>
                 {

@@ -14,6 +14,7 @@ import SignUp from './Pages/SignUp/SignUp';
 import ManageInventory from './Pages/ManageInventory/ManageInventory';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import { ToastContainer } from 'react-toastify';
+import Blogs from './Pages/Blogs/Blogs';
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
      <Routes>
        <Route path='/' element={<Home></Home>}></Route>
        <Route path='/uploadpd' element={<Uploadproduct></Uploadproduct>}></Route>
+       <Route path='/blogs' element={<Blogs/>}></Route>
        <Route path='/login' element={<Login/>}></Route>
        <Route path='/signup' element={<SignUp/>}></Route>
        <Route path='/inventory/:id' element={<ProtectedRoute><ProductDetails></ProductDetails></ProtectedRoute>}></Route>

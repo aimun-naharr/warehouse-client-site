@@ -22,7 +22,7 @@ const Product = ({product}) => {
                         <p>Description: {description}</p>
                     </div>
             </div>
-            <button className='manage-button w-100' onClick={()=>handleManageInventory(_id)}>Manage</button>
+            <button className='manage-button w-100 rounded' onClick={()=>handleManageInventory(_id)}>Manage</button>
         </div>
       
     );

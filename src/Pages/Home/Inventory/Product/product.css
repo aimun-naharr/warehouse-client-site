@@ -1,12 +1,17 @@
 .product-card{
     width: 250px;
-    border: 1px solid #ed174a;
+    /* border: 1px solid rgb(170, 165, 165); */
     align-items: center;
     padding: 0;
     justify-content: center;
     display: flex;
     flex-direction: column;
     /* margin: 0; */
+}
+.product-card:hover{
+    border: 1px solid #ed174a;
+    box-shadow: 5px 10px #c9c1c1;
+    transition: 0.5s ease-out;
 }
 .product-card-info{
     line-height: normal;
@@ -25,4 +30,7 @@
 .red-color{
     color: #ed174a;
     font-weight: bold;
+}
+.manage-button:hover{
+    background-color: #cc4e4e;
 }

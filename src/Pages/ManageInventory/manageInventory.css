@@ -2,18 +2,21 @@
    justify-content: center;
     margin-top: 20px;
     display: flex;
-    width: 300px;
+    width: 350px;
     height: 80px;
     align-items: center;
-    
-}
+    }
+    .inventory-card:hover{
+        border: 1px solid lightgray;
+    }
 .add-item{
-    width: 300px;
+    width: 350px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    background-color: #ED174A;
+    color: #ffffff;
 }
 .card-info{
     display: flex;
@@ -24,6 +27,23 @@
    padding-left: 8px;
 }
 .inventory-card img{
-    width: 91px;
+    height: 80px;
     border-radius: 8px;
+}
+.product-details{
+    line-height: normal;
+    padding: 10px 0;
+    margin: 0;
+}
+.delete-btn{
+    border: none;
+    font-size: 14px;
+    background-color: #ED174A;
+    color: #ffffff;
+    padding: 5px 8px;
+}
+.add-button{
+    background-color: #ffffff;
+    border: none;
+    padding: 3px 10px;
 }

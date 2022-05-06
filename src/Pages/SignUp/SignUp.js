@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../../firebaseinit';
 
 const SignUp = () => {
@@ -41,6 +42,7 @@ Sign up
 <Button onClick={()=>signInWithGoogle()} variant="success">
 Google sign in
 </Button>
+<p className='mt-2'>Already registered? <Link to='/login'>Log in</Link></p>
 </Form>
         </div>
     </div>

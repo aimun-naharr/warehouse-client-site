@@ -30,16 +30,20 @@ const ManageInventory = () => {
         <div>
         
             <div className="row border">
-            <div className='mx-auto col-md-12 border add-item'><div><h5>Add item</h5></div><div><button onClick={handleAddbtn}></button></div></div>
+            <div className='mx-auto col-md-12 border add-item rounded'><div><h5>Add item</h5></div><div><button className='add-button rounded' onClick={handleAddbtn}>add</button></div></div>
                 <div className="col-md-12">
                     {
                         products.map(product=>
-                         <div className='inventory-card mx-auto border'>
+                         <div className='inventory-card mx-auto rounded'>
                          
-                               <div> <img className='' src={product.image} alt="" /></div>
+                               <div> <img className='rounded' src={product.image} alt="" />
+                               </div>
                                 <div className='card-info'>
-                             <p>{product.productName}</p>
-                                <button onClick={()=>handleDelete(product._id)}>X</button>
+                            <div className='product-details'>
+                            <p>{product.productName}</p>
+                             <p><small>Quantity: {product.quantity}</small></p>
+                            </div>
+                                <button className='delete-btn rounded' onClick={()=>handleDelete(product._id)}>Delete</button>
                                 </div>
                         </div>)
                     }
