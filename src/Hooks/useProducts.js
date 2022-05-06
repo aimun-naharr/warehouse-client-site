@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Spinner from "./spinner/Spinner"
 
 const useProduct=()=>{
     const [products, setProducts]=useState([])
@@ -6,7 +7,10 @@ const useProduct=()=>{
     useEffect(()=>{
         fetch(url)
         .then(res=>res.json())
-        .then(data=>setProducts(data))
+        .then(data=>{
+            <Spinner></Spinner>
+            setProducts(data)
+        })
     },[])
     return [products , setProducts]
 }

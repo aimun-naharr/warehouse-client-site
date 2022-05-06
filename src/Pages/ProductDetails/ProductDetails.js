@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-
+import "./productdetails.css"
 
 const ProductDetails = () => {
     const {id}=useParams()
@@ -42,21 +42,24 @@ const ProductDetails = () => {
     },[id])
     return (
         <div>
-            <div className="row border w-1000 container mx-auto justify-content-center">
-                <div className="col-md-6">
+            <div className="row w-1000 container mx-auto justify-content-between mt-5">
+                <div className="col-md-7 details-card justify-content-center">
                     <div>
                         <img className='w-75 rounded' src={product.image} alt="" />
-                        <h5>{product.productName}</h5>
+                       
+                    </div>
+                </div>
+                <div className="col-md-5">
+                    <h4>Restock <span className='red-color'>items</span></h4>
+                    <input type="number" name="" id="" />
+                    <button>+</button>
+                    <div className='mt-3'>
+                    <h5>{product.productName}</h5>
                         <p>Supplier name: {product.supplierName}</p>
                         <p>Quantity: {product.quantity}kg</p>
                         <p>Price: ${product.price}</p>
-                        <button onClick={()=>handleDelivered(product._id)}>Delivered</button>
+                        <button className='delivered-button rounded' onClick={()=>handleDelivered(product._id)}>Delivered</button>
                     </div>
-                </div>
-                <div className="col-md-6">
-                    <h4>Restock items</h4>
-                    <input type="number" name="" id="" />
-                    <button>+</button>
                 </div>
             </div>
         </div>
