@@ -2,17 +2,19 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebaseinit';
 import AddSpinner from '../../Hooks/AddSpinner/AddSpinner';
 
 const SignUp = () => {
+    const navigate=useNavigate()
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true})
-      let navigate = useNavigate();
+      
       let location = useLocation();
       let from = location.state?.from?.pathname || "/";
       const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -25,6 +27,16 @@ const SignUp = () => {
         console.log(email, password)
         
     }
+    if(error){
+        return toast('Put a valid email and password')
+        
+    }
+    
+    if(googleError){
+        return toast('something went wrong')
+        
+    }
+    
     if(user|| googleUser){
         navigate(from, { replace: true })
     }

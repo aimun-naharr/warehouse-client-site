@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import "./productdetails.css"
 
 const ProductDetails = () => {
@@ -28,6 +29,7 @@ const ProductDetails = () => {
   .then((data) => {
      if(data.matchedCount>0){
         window.location.reload(false)
+        toast('delivered')
      }
     console.log(data)
   })

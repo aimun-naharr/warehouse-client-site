@@ -4,7 +4,7 @@ import {useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithG
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebaseinit';
 import AddSpinner from '../../Hooks/AddSpinner/AddSpinner';
-
+import { toast } from 'react-toastify';
 const Login = () => {
   const [email, setEmail]=useState('')
     const [
@@ -34,6 +34,9 @@ const Login = () => {
     }
     if(loading|| googleLoading|| sending){
       return <AddSpinner></AddSpinner>
+    }
+    if(error){
+      return toast('Please put a valid email and password')
     }
     if(user||googleUser){
       const url='https://obscure-spire-96407.herokuapp.com/login'

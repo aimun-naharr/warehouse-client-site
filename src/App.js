@@ -29,7 +29,7 @@ function App() {
        <Route path='/inventory/:id' element={<ProtectedRoute><ProductDetails></ProductDetails></ProtectedRoute>}></Route>
        <Route path='/manageInventory' element={<ProtectedRoute><ManageInventory></ManageInventory></ProtectedRoute>}></Route>
      </Routes>
-    
+     <ToastContainer></ToastContainer>
     </div>
   );
 }
