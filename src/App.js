@@ -27,7 +27,7 @@ function App() {
        <Route path='/login' element={<Login/>}></Route>
        <Route path='/signup' element={<SignUp/>}></Route>
        <Route path='/inventory/:id' element={<ProtectedRoute><ProductDetails></ProductDetails></ProtectedRoute>}></Route>
-       <Route path='/manageInventory' element={<ManageInventory></ManageInventory>}></Route>
+       <Route path='/manageInventory' element={<ProtectedRoute><ManageInventory></ManageInventory></ProtectedRoute>}></Route>
      </Routes>
     
     </div>

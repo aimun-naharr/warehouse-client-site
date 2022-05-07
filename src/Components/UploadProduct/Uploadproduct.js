@@ -11,7 +11,7 @@ const Uploadproduct = () => {
         const description=e.target.description.value
         const supplierName=e.target.supplierName.value
         const image=e.target.image.value
-        fetch('http://localhost:5000/uploadpd', {
+        fetch('https://obscure-spire-96407.herokuapp.com/uploadpd', {
   method: 'POST',
   body: JSON.stringify({
    productName, quantity, price, description, supplierName, image

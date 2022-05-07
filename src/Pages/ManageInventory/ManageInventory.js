@@ -11,7 +11,7 @@ const ManageInventory = () => {
     }
     const handleDelete=id=>{
         const confirm=window.confirm('confirm delete?')
-        const url=`http://localhost:5000/product/${id}`
+        const url=`https://obscure-spire-96407.herokuapp.com/product/${id}`
        if(confirm){
         fetch(url,{
             'method': 'DELETE'
