@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import "./productdetails.css"
@@ -45,8 +45,29 @@ const ProductDetails = () => {
             
         })
     },[id])
+    const inputRef= useRef('')
     const handleAddbtn=()=>{
-
+        const addQuantity=parseInt(inputRef.current.value)
+        const quantity= product.quantity
+        console.log(quantity)
+        
+        fetch(`http://localhost:5000/addQuantity/${id}`, {
+  method: 'PUT',
+  body: JSON.stringify({
+    addQuantity: addQuantity,
+    quantity: quantity
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+      if(data.matchedCount>0){
+        window.location.reload(false)
+      }
+  });
+  
     }
    
     return (
@@ -60,7 +81,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="col-md-5">
                     <h4>Restock <span className='red-color'>items</span></h4>
-                    <input onChange={input} type="number" name="" id="" />
+                    <input ref={inputRef} type="number" name="" id="" />
                     <button className='plus-btn' onClick={handleAddbtn}>+</button>
                     <div className='mt-3'>
                     <h5>{product.productName}</h5>

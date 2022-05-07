@@ -6,7 +6,7 @@ import auth from '../../firebaseinit';
 import AddSpinner from '../../Hooks/AddSpinner/AddSpinner';
 import { toast } from 'react-toastify';
 const Login = () => {
-  const [email, setEmail]=useState('')
+  const [newEmail, setEmail]=useState('')
     const [
         signInWithEmailAndPassword,
         user,
@@ -59,7 +59,7 @@ const Login = () => {
 
     const handleResetPassword=async()=>{
       
-      await sendPasswordResetEmail(email);
+      await sendPasswordResetEmail(newEmail);
           alert('Sent email')
     }
     return (
