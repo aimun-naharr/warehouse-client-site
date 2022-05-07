@@ -51,7 +51,7 @@ const ProductDetails = () => {
         const quantity= product.quantity
         console.log(quantity)
         
-        fetch(`http://localhost:5000/addQuantity/${id}`, {
+        fetch(`https://obscure-spire-96407.herokuapp.com/addQuantity/${id}`, {
   method: 'PUT',
   body: JSON.stringify({
     addQuantity: addQuantity,
