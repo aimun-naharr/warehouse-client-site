@@ -24,6 +24,7 @@ const Uploadproduct = () => {
   .then((data) => {
      console.log(data.success)
      toast('Products list updated')
+      
      e.target.reset()
   });
         
@@ -54,7 +55,7 @@ const Uploadproduct = () => {
     Upload
   </Button>
 </Form>
- <ToastContainer></ToastContainer>
+ 
         </div>
     );
 };
