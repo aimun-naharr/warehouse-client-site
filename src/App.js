@@ -15,6 +15,7 @@ import ManageInventory from './Pages/ManageInventory/ManageInventory';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import { ToastContainer } from 'react-toastify';
 import Blogs from './Pages/Blogs/Blogs';
+import NotFound from './Components/NotFound/NotFound';
 function App() {
   return (
     <div>
@@ -28,6 +29,7 @@ function App() {
        <Route path='/signup' element={<SignUp/>}></Route>
        <Route path='/inventory/:id' element={<ProtectedRoute><ProductDetails></ProductDetails></ProtectedRoute>}></Route>
        <Route path='/manageInventory' element={<ProtectedRoute><ManageInventory></ManageInventory></ProtectedRoute>}></Route>
+       <Route path='*' element={<NotFound></NotFound>}></Route>
      </Routes>
      <ToastContainer></ToastContainer>
     </div>
