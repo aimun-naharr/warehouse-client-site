@@ -7,8 +7,11 @@ const ProductDetails = () => {
     
     const [product, setProduct]=useState({})
     const quantity= parseInt(product.quantity)
-    console.log(quantity)
-    const [isReload, setIsReload]=useState(false)
+    const input=e=>{
+        const addQuantity= e.target.value
+        
+    }
+  
     const handleDelivered=(id)=>{
         const url=`http://localhost:5000/quantity/${id}`
         
@@ -24,7 +27,7 @@ const ProductDetails = () => {
   .then((response) => response.json())
   .then((data) => {
      if(data.matchedCount>0){
-        setIsReload(!isReload)
+        window.location.reload(false)
      }
     console.log(data)
   })
@@ -40,6 +43,10 @@ const ProductDetails = () => {
             
         })
     },[id])
+    const handleAddbtn=()=>{
+
+    }
+   
     return (
         <div>
             <div className="row w-1000 container mx-auto justify-content-between mt-5">
@@ -51,14 +58,15 @@ const ProductDetails = () => {
                 </div>
                 <div className="col-md-5">
                     <h4>Restock <span className='red-color'>items</span></h4>
-                    <input type="number" name="" id="" />
-                    <button>+</button>
+                    <input onChange={input} type="number" name="" id="" />
+                    <button className='plus-btn' onClick={handleAddbtn}>+</button>
                     <div className='mt-3'>
                     <h5>{product.productName}</h5>
                         <p>Supplier name: {product.supplierName}</p>
                         <p>Quantity: {product.quantity}kg</p>
                         <p>Price: ${product.price}</p>
                         <button className='delivered-button rounded' onClick={()=>handleDelivered(product._id)}>Delivered</button>
+                        
                     </div>
                 </div>
             </div>

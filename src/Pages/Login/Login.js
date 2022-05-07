@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import {useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebaseinit';
 import AddSpinner from '../../Hooks/AddSpinner/AddSpinner';
 
 const Login = () => {
+  const [email, setEmail]=useState('')
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth)
+      const [sendPasswordResetEmail, sending, passwordError] = useSendPasswordResetEmail(
+        auth
+      )
       let navigate = useNavigate();
       let location = useLocation();
       const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -21,13 +25,14 @@ const Login = () => {
     const handleLogin=e=>{
         e.preventDefault()
         const email=e.target.email.value
+        setEmail(email)
         const password=e.target.password.value
         
         signInWithEmailAndPassword(email, password)
         console.log(email, password)
         
     }
-    if(loading|| googleLoading){
+    if(loading|| googleLoading|| sending){
       return <AddSpinner></AddSpinner>
     }
     if(user||googleUser){
@@ -47,6 +52,12 @@ const Login = () => {
   console.log(user|| googleUser)
         navigate(from, { replace: true })
 
+    }
+
+    const handleResetPassword=async()=>{
+      
+      await sendPasswordResetEmail(email);
+          alert('Sent email')
     }
     return (
         <div className='row'>
@@ -68,7 +79,8 @@ const Login = () => {
   </Button>
   <Button onClick={()=>signInWithGoogle()} variant="success">
     Google sign in
-  </Button>
+  </Button><br />
+  <Button onClick={handleResetPassword} variant="link">Forgot password?</Button>
   <p className='mt-2'>New to bunch? <Link to='/signup'>Sign up</Link></p>
 </Form>
 
