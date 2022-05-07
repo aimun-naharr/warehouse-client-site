@@ -23,9 +23,7 @@ const Header = () => {
       {
         user? <button className='logout-button rounded' onClick={()=>signOut(auth)}>Log out</button>: <Nav.Link as={Link} to="/login">Log in</Nav.Link>
       }
-      <Nav.Link eventKey={2} href="#memes">
-        Dank memes
-      </Nav.Link>
+      
     </Nav>
   </Navbar.Collapse>
   </Container>

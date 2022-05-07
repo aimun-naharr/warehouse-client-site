@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import {useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebaseinit';
+import AddSpinner from '../../Hooks/AddSpinner/AddSpinner';
 
 const Login = () => {
     const [
@@ -25,6 +26,9 @@ const Login = () => {
         signInWithEmailAndPassword(email, password)
         console.log(email, password)
         
+    }
+    if(loading|| googleLoading){
+      return <AddSpinner></AddSpinner>
     }
     if(user||googleUser){
       const url='http://localhost:5000/login'
