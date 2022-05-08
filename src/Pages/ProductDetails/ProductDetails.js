@@ -87,7 +87,7 @@ const ProductDetails = () => {
                     <h5>{product.productName}</h5>
                         <p>Supplier name: {product.supplierName}</p>
                         <p>Quantity: {product.quantity}kg</p>
-                        <p>Price: ${product.price}</p>
+                        <p>Price: <span className='red-color'>$</span>{product.price}</p>
                         <button className='delivered-button rounded' onClick={()=>handleDelivered(product._id)}>Delivered</button>
                         
                     </div>

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast, ToastContainer } from 'react-toastify';
+import auth from '../../firebaseinit';
 
 const Uploadproduct = () => {
+   const [user, loading, error] = useAuthState(auth)
     const handleUpload=(e)=>{
+      
         e.preventDefault()
         const productName=e.target.product.value
         const quantity=e.target.quantity.value
@@ -17,6 +21,7 @@ const Uploadproduct = () => {
    productName, quantity, price, description, supplierName, image
   }),
   headers: {
+     'authorization': `${user.email} ${localStorage.getItem('token')}`,
     'Content-type': 'application/json; charset=UTF-8',
   },
 })

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import {useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebaseinit';
 import AddSpinner from '../../Hooks/AddSpinner/AddSpinner';
 import { toast } from 'react-toastify';
 const Login = () => {
-  const [newEmail, setEmail]=useState('')
+  const [generalUser] = useAuthState(auth)
+  const [email, setEmail]=useState('')
     const [
         signInWithEmailAndPassword,
         user,
@@ -26,10 +27,11 @@ const Login = () => {
         e.preventDefault()
         const email=e.target.email.value
         setEmail(email)
+       
         const password=e.target.password.value
         
         signInWithEmailAndPassword(email, password)
-        console.log(email, password)
+       
         
     }
     if(loading|| googleLoading|| sending){
@@ -38,29 +40,53 @@ const Login = () => {
     if(error){
       return toast('Please put a valid email and password')
     }
-    if(user||googleUser){
+    if(user){
+      
       const url='https://obscure-spire-96407.herokuapp.com/login'
       fetch(url, {
   method: 'POST',
   body: JSON.stringify({
-   email: user?.email ,
-   googleEmail: googleUser?.email
+   email: email 
+   
   }),
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
   },
 })
   .then((response) => response.json())
-  .then((json) => console.log(json));
-  console.log(user|| googleUser)
-        navigate(from, { replace: true })
+  .then((data) =>{
+    localStorage.setItem('token', data.token)
+    navigate(from, { replace: true })
+  } );
+  
+    }
 
+    if(googleUser){
+      const googleEmail=generalUser.email
+      const url='https://obscure-spire-96407.herokuapp.com/login'
+      fetch(url, {
+  method: 'POST',
+  body: JSON.stringify({
+   email: googleEmail
+   
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((data) =>{
+    localStorage.setItem('token', data.token)
+    navigate(from, { replace: true })
+  } );
+  
     }
 
     const handleResetPassword=async()=>{
       
-      await sendPasswordResetEmail(newEmail);
-          alert('Sent email')
+      await sendPasswordResetEmail(generalUser.email);
+      
+          toast('Sent email')
     }
     return (
         <div className='row'>
